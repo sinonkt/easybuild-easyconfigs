@@ -1,0 +1,45 @@
+# This file is an EasyBuild reciPY as per https://github.com/easybuilders/easybuild
+# Contributor : Krittin Phornsiricharoenphant
+# Email: oatkrittin@gmail.com, krittin.pho@ncr.nstda.or.th
+# National Biobank of Thailand, NSTDA
+# Thailand Supercomputer Center, NSTDA
+# National Science and Technology Development Agency (NSTDA)
+
+easyblock = 'MakeCp'
+
+name = 'SHAPEIT'
+version = '4.1.1'
+
+homepage = 'https://odelaneau.github.io/shapeit4/'
+description = """
+SHAPEIT4 [Segmented HAPlotype Estimation and Imputation Tools version 4]
+SHAPEIT4 is a fast and accurate method for estimation of haplotypes (aka phasing)
+for SNP array and high coverage sequencing data.
+Improved and refactored by Prof. Olivier Delaneau (olivier.delaneau@gmail.com) and team,
+Department of Computational Biology, University of Lausanne
+"""
+
+toolchain = {'name': 'foss', 'version': '2018b'}
+
+source_urls = ['https://github.com/sinonkt/shapeit4/archive']
+sources = ['master.tar.gz']
+checksums = ['3cad01940db24636d553c129e00a0c22ec79ceddbbb4752f768063846c9e9380']
+
+files_to_copy = ['bin', 'docs', 'LICENSE', 'maps', 'test']
+
+dependencies = [
+  ('HTSlib', '1.9'),
+  ('Boost', '1.67.0')
+]
+
+sanity_check_paths = {
+    'files': ['bin/shapeit4'],
+    'dirs': []
+}
+
+modloadmsg = """
+all example files for test provided by shapeit4 are located here -> $EBROOTSHAPEIT/test
+and for genetic maps files -> $EBROOTSHAPEIT/maps
+"""
+
+moduleclass = 'bio'
